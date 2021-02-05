@@ -56,6 +56,7 @@ fun main(args: Array<String>) {
             val clazz = arr[0]
             val method = arr[1]
             val signature = arr[2]
+            if (signature.endsWith(")")) throw IllegalArgumentException("No return type for signature: $signature")
             for (i in 3 until arr.size) {
                 if (!mapping.containsKey(clazz)) mapping.add(clazz, MultiCollection())
                 // accepts these "remap info":
@@ -71,9 +72,10 @@ fun main(args: Array<String>) {
                 val newName = if (arr1.size == 1) arr1[0] else arr1[1]
                 mapping[clazz]!!.add(method + signature, RemapInfo(method, signature, i - 3, oldName, newName, oldName != null))
             }
-        } catch (e: IndexOutOfBoundsException) {
+        } catch (e: Throwable) {
             System.err.println("Invalid mapping at line ${ln.get()}: $line")
-            e.printStackTrace()
+            System.err.println("Error message: ${e.javaClass.simpleName}: ${e.message}")
+            if (debug) e.printStackTrace()
         }
     }
     ParameterRemapper(mapping, inputFile, outputFile, threads, verbose, debug).run()
