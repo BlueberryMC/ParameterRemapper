@@ -46,8 +46,9 @@ fun main(args: Array<String>) {
     val mapping = Mapping()
     val ln = AtomicInteger()
     println("Loading mapping file")
-    mappingFile.forEachLine { line ->
+    mappingFile.forEachLine { _line ->
         ln.incrementAndGet()
+        val line = if (_line.contains("#")) _line.replace("(.*?)#.*".toRegex(), "$1") else _line
         if (line.isEmpty()) return@forEachLine
         try {
             // class method signature <remap info, see below>
