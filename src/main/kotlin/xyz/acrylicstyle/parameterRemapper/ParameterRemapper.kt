@@ -148,7 +148,7 @@ class ParameterRemapper(
                     override fun visitEnd() {
                         paramMapping.foreach { info, index ->
                             if (!seen.contains(index)) {
-                                unseen.add((if (info.dummy) "Possibly " else "") + "Unseen param: ${cr.className} $name $descriptor; param index $index")
+                                unseen.add((if (info.dummy) "Possibly " else "") + "Unseen param: ${cr.className} $name $descriptor : param index $index")
                             }
                         }
                         super.visitEnd()
