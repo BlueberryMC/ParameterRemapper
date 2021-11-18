@@ -33,7 +33,7 @@ class ParameterRemapper(
 
     fun run() {
         val progress = ProgressBarBuilder()
-            .setStyle(ProgressBarStyle.COLORFUL_UNICODE_BLOCK)
+            .setStyle(ProgressBarStyle.ASCII)
             .setInitialMax(0)
             .showSpeed()
             .build()
@@ -92,7 +92,7 @@ class ParameterRemapper(
     private fun applyMapping(cr: ClassReader): ClassNode {
         val node = ClassNode()
         val seenMethods = HashSet<String>()
-        val visitor = object : ClassVisitor(Opcodes.ASM8, node) {
+        val visitor = object : ClassVisitor(Opcodes.ASM9, node) {
             override fun visitMethod(
                 access: Int,
                 name: String,
@@ -112,7 +112,7 @@ class ParameterRemapper(
                 val seen = HashSet<Int>()
                 seenMethods.add("${cr.className},$name $descriptor")
                 val seenThis = AtomicBoolean(false)
-                return object : MethodVisitor(Opcodes.ASM8, methodVisitor) {
+                return object : MethodVisitor(Opcodes.ASM9, methodVisitor) {
                     override fun visitLocalVariable(
                         lvName: String?,
                         lvDescriptor: String?,

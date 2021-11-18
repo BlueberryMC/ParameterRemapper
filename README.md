@@ -66,3 +66,6 @@ test/MemoryUtils writeObject (ZJJ)V -> ->address bar->value
 - `--input-file=path/to/input.jar` - specify input file, defaults to `input.jar`
 - `--output-file=path/to/output.jar` - specify output file, defaults to `remapped.jar`
 - `--threads=8` - numbers of threads to process classes
+
+## building
+just run `./gradlew build`

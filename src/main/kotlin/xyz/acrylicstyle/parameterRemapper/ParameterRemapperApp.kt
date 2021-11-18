@@ -2,7 +2,7 @@
 
 package xyz.acrylicstyle.parameterRemapper
 
-import util.MultiCollection
+import util.collection.MultiCollection
 import util.function.BuiltinStringConverter
 import util.option.OptionParser
 import xyz.acrylicstyle.parameterRemapper.util.Mapping

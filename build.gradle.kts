@@ -1,9 +1,9 @@
 plugins {
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.6.0"
 }
 
 group = "xyz.acrylicstyle"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenLocal()
@@ -12,12 +12,17 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-    implementation("org.ow2.asm", "asm", "8.0.1")
-    implementation("org.ow2.asm", "asm-commons", "8.0.1")
-    implementation("org.ow2.asm", "asm-tree", "8.0.1")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
+    implementation("org.ow2.asm", "asm", "9.2")
+    implementation("org.ow2.asm", "asm-commons", "9.2")
+    implementation("org.ow2.asm", "asm-tree", "9.2")
     implementation("me.tongfei", "progressbar", "0.8.1")
-    implementation("xyz.acrylicstyle", "java-util-all", "0.13.2")
+    implementation("xyz.acrylicstyle.util", "common", "0.16.4")
+    implementation("xyz.acrylicstyle.util", "collection", "0.16.4")
+    implementation("xyz.acrylicstyle.util", "all", "0.16.4") {
+        exclude("org.ow2.asm", "asm")
+        exclude("org.ow2.asm", "asm-commons")
+    }
 }
 
 tasks {
