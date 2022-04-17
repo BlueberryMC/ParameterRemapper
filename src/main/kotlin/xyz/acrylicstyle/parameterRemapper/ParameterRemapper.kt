@@ -77,6 +77,7 @@ class ParameterRemapper(
         mappingExecutor.awaitTermination(Long.MAX_VALUE, TimeUnit.HOURS)
         outputExecutor.shutdown()
         outputExecutor.awaitTermination(Long.MAX_VALUE, TimeUnit.HOURS)
+        input.close()
         output.close()
         progress.close()
         if (verbose && remapped.isNotEmpty()) {
